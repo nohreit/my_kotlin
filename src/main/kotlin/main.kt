@@ -204,7 +204,7 @@ int k = removeDuplicates(nums); // Calls your implementation
 
 assert k == expectedNums.length;
 for (int i = 0; i < k; i++) {
-assert nums\[i] == expectedNums\[i];
+assert nums[i] == expectedNums[i];
 }
 
 If all assertions pass, then your solution will be accepted.
@@ -282,14 +282,17 @@ Output: [0]
 Constraints:
 
 1 <= nums.length <= 104
--231 <= nums\[i] <= 231 - 1
+-231 <= nums[i] <= 231 - 1
 
 
 Follow up: Could you minimize the total number of operations done?
 Show Hint #1
-In-place means we should not be allocating any space for extra array. But we are allowed to modify the existing array. However, as a first step, try coming up with a solution that makes use of additional space. For this problem as well, first apply the idea discussed using an additional array and the in-place solution will pop up eventually.
+In-place means we should not be allocating any space for extra array. But we are allowed to modify the existing array.
+However, as a first step, try coming up with a solution that makes use of additional space. For this problem as well,
+first apply the idea discussed using an additional array and the in-place solution will pop up eventually.
 Hide Hint #2
-A two-pointer approach could be helpful here. The idea would be to have one pointer for iterating the array and another pointer that just works on the non-zero elements of the array.
+A two-pointer approach could be helpful here. The idea would be to have one pointer for iterating the array and another
+pointer that just works on the non-zero elements of the array.
 
  */
 
@@ -322,7 +325,8 @@ fun main(args: Array<String>) {
     val expectedNums = intArrayOf(); // The expected answer with correct length.
     // It is sorted with no values equaling val.
 
-    /*    val k = removeDuplicates(nums) // Calls your implementation
+    /*
+        val k = removeDuplicates(nums) // Calls your implementation
 
         if (k == expectedNums.size) {
             sort(nums, 0, k); // Sort the first k elements of nums
