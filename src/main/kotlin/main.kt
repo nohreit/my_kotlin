@@ -22,8 +22,8 @@
 
  * Constraints:
 
- * <code> 1 <= arr.length <= 104 </code>
- * <code> 0 <= arr[i] <= 9 </code>
+ * 1 <= arr.length <= 104
+ * 0 <= arr\[i] <= 9
  *
  * Java
  *
@@ -204,7 +204,7 @@ int k = removeDuplicates(nums); // Calls your implementation
 
 assert k == expectedNums.length;
 for (int i = 0; i < k; i++) {
-assert nums[i] == expectedNums[i];
+assert nums\[i] == expectedNums\[i];
 }
 
 If all assertions pass, then your solution will be accepted.
@@ -229,7 +229,7 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 Constraints:
 
 1 <= nums.length <= 3 * 104
--100 <= nums[i] <= 100
+-100 <= nums\[i] <= 100
 nums is sorted in non-decreasing order.
 
 Show Hint #1
@@ -282,7 +282,7 @@ Output: [0]
 Constraints:
 
 1 <= nums.length <= 104
--231 <= nums[i] <= 231 - 1
+-231 <= nums\[i] <= 231 - 1
 
 
 Follow up: Could you minimize the total number of operations done?
@@ -294,14 +294,14 @@ A two-pointer approach could be helpful here. The idea would be to have one poin
  */
 
 fun moveZeroes(nums: IntArray) {
-    if (nums.isEmpty()) return
-    if (nums.size == 1) print(nums[0])
-    var a = 0
-    for(i in nums.indices){
-        if(nums[i] == 0){
-            a = i
-        }else
-    }
+//    if (nums.isEmpty()) return
+//    if (nums.size == 1) print(nums[0])
+//    var a = 0
+//    for(i in nums.indices){
+//        if(nums[i] == 0){
+//            a = i
+//        }else
+//    }
 }
 
 fun main(args: Array<String>) {
@@ -322,19 +322,19 @@ fun main(args: Array<String>) {
     val expectedNums = intArrayOf(); // The expected answer with correct length.
     // It is sorted with no values equaling val.
 
-/*    val k = removeDuplicates(nums) // Calls your implementation
+    /*    val k = removeDuplicates(nums) // Calls your implementation
 
-    if (k == expectedNums.size) {
-        sort(nums, 0, k); // Sort the first k elements of nums
-        for (i in expectedNums.indices) {
-            if (nums[i] != expectedNums[i]) break
+        if (k == expectedNums.size) {
+            sort(nums, 0, k); // Sort the first k elements of nums
+            for (i in expectedNums.indices) {
+                if (nums[i] != expectedNums[i]) break
+            }
+        } else {
+            println("Mismatch")
         }
-    } else {
-        println("Mismatch")
-    }
 
- */
-
+     */
+    println("test")
 
 
 }
