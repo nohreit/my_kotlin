@@ -450,11 +450,14 @@ Constraints:
 0 <= val <= 100
 
 Show Hint #1
-The problem statement clearly asks us to modify the array in-place and it also says that the element beyond the new length of the array can be anything. Given an element, we need to remove all the occurrences of it from the array. We don't technically need to remove that element per-say, right?
+The problem statement clearly asks us to modify the array in-place and it also says that the element beyond the new length
+of the array can be anything. Given an element, we need to remove all the occurrences of it from the array. We don't
+technically need to remove that element per-say, right?
 Show Hint #2
 We can move all the occurrences of this element to the end of the array. Use two pointers!
 Show Hint #3
-Yet another direction of thought is to consider the elements to be removed as non-existent. In a single pass, if we keep copying the visible elements in-place, that should also solve this problem for us.
+Yet another direction of thought is to consider the elements to be removed as non-existent. In a single pass, if we keep
+copying the visible elements in-place, that should also solve this problem for us.
 
  */
 /*
@@ -473,6 +476,143 @@ fun removeElement(nums: IntArray, `val`: Int): Int {
         }
     }
     return k
+}
+
+/***
+ * A school is trying to take an annual photo of all the students. The students are asked to stand in a single file line
+ * in non-decreasing order by height. Let this ordering be represented by the integer array expected where expected[i] is the expected height of the ith student in line.
+
+You are given an integer array heights representing the current order that the students are standing in. Each heights[i]
+is the height of the ith student in line (0-indexed).
+
+Return the number of indices where heights[i] != expected[i].
+
+
+
+Example 1:
+
+Input: heights = [1,1,4,2,1,3]
+Output: 3
+Explanation:
+heights:  [1,1,4,2,1,3]
+expected: [1,1,1,2,3,4]
+Indices 2, 4, and 5 do not match.
+
+Example 2:
+
+Input: heights = [5,1,2,3,4]
+Output: 5
+Explanation:
+heights:  [5,1,2,3,4]
+expected: [1,2,3,4,5]
+All indices do not match.
+
+Example 3:
+
+Input: heights = [1,2,3,4,5]
+Output: 0
+Explanation:
+heights:  [1,2,3,4,5]
+expected: [1,2,3,4,5]
+All indices match.
+
+
+
+Constraints:
+
+1 <= heights.length <= 100
+1 <= heights[i] <= 100
+
+Show Hint #1
+Build the correct order of heights by sorting another array, then compare the two arrays.
+
+ */
+
+fun heightChecker(heights: IntArray): Int {
+    if (heights.isEmpty()) return 0
+    var k = 0
+    val srt = heights.sortedArray()
+    for (i in srt.indices) if (srt[i] != heights[i]) k++
+    return k
+}
+
+/***
+ * Given an integer array nums, return the third distinct maximum number in this array. If the third maximum does not exist, return the maximum number.
+
+
+
+Example 1:
+
+Input: nums = [3,2,1]
+Output: 1
+Explanation:
+The first distinct maximum is 3.
+The second distinct maximum is 2.
+The third distinct maximum is 1.
+
+Example 2:
+
+Input: nums = [1,2]
+Output: 2
+Explanation:
+The first distinct maximum is 2.
+The second distinct maximum is 1.
+The third distinct maximum does not exist, so the maximum (2) is returned instead.
+
+Example 3:
+
+Input: nums = [2,2,3,1]
+Output: 1
+Explanation:
+The first distinct maximum is 3.
+The second distinct maximum is 2 (both 2's are counted together since they have the same value).
+The third distinct maximum is 1.
+
+
+
+Constraints:
+
+1 <= nums.length <= 104
+-231 <= nums[i] <= 231 - 1
+
+
+Follow up: Can you find an O(n) solution?
+ */
+
+/*
+    fun thirdMax(nums: IntArray): Int {
+        var fir : Int? = null
+        var sec : Int? = null
+        var third : Int? = null
+
+        for (v in nums) {
+            when {
+                v == fir || v == sec || v == third -> {}
+                fir == null || v > fir -> {
+                    third = sec
+                    sec = fir
+                    fir = v
+                }
+                sec == null || v > sec -> {
+                    third = sec
+                    sec = v
+                }
+                third == null || v > third -> {
+                    third = v
+                }
+            }
+        }
+
+        return third ?: fir!!
+
+    }
+ */
+
+fun thirdMax(nums: IntArray): Int {
+//    if (nums.isEmpty()) return 0
+    val arr = nums.toSortedSet().reversed()
+    if (arr.size > 2) return arr[2]
+    return arr[0]
 }
 
 fun main(args: Array<String>) {
@@ -513,5 +653,9 @@ fun main(args: Array<String>) {
 
      */
 
-
+    println(thirdMax(nums))
+    println(thirdMax(nums2))
+    println(thirdMax(nums4))
+    println(thirdMax(nums7))
+    println(thirdMax(nums17))
 }
