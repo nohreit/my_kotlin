@@ -397,9 +397,12 @@ fun sortArrayByParity(nums: IntArray): IntArray {
 }
 
 /***
- * Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The relative order of the elements may be changed.
+ * Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The relative order of
+ * the elements may be changed.
 
-Since it is impossible to change the length of the array in some languages, you must instead have the result be placed in the first part of the array nums. More formally, if there are k elements after removing the duplicates, then the first k elements of nums should hold the final result. It does not matter what you leave beyond the first k elements.
+Since it is impossible to change the length of the array in some languages, you must instead have the result be placed in
+the first part of the array nums. More formally, if there are k elements after removing the duplicates, then the first k
+elements of nums should hold the final result. It does not matter what you leave beyond the first k elements.
 
 Return k after placing the final result in the first k slots of nums.
 
@@ -537,7 +540,8 @@ fun heightChecker(heights: IntArray): Int {
 }
 
 /***
- * Given an integer array nums, return the third distinct maximum number in this array. If the third maximum does not exist, return the maximum number.
+ * Given an integer array nums, return the third distinct maximum number in this array. If the third maximum does not exist,
+ * return the maximum number.
 
 
 
@@ -615,6 +619,112 @@ fun thirdMax(nums: IntArray): Int {
     return arr[0]
 }
 
+/***
+ * Given an array nums of n integers where nums[i] is in the range [1, n], return an array of all the integers in the
+ * range [1, n] that do not appear in nums.
+
+
+
+Example 1:
+
+Input: nums = [4,3,2,7,8,2,3,1]
+Output: [5,6]
+
+Example 2:
+
+Input: nums = [1,1]
+Output: [2]
+
+
+
+Constraints:
+
+n == nums.length
+1 <= n <= 105
+1 <= nums[i] <= n
+
+
+
+Follow up: Could you do it without extra space and in O(n) runtime? You may assume the returned list does not count as extra
+space.
+Show Hint #1
+This is a really easy problem if you decide to use additional memory. For those trying to write an initial solution using
+additional memory, think counters!
+Show Hint #2
+However, the trick really is to not use any additional space than what is already available to use. Sometimes, multiple
+passes over the input array help find the solution. However, there's an interesting piece of information in this problem
+that makes it easy to re-use the input array itself for the solution.
+Show Hint #3
+The problem specifies that the numbers in the array will be in the range [1, n] where n is the number of elements in the
+array. Can we use this information and modify the array in-place somehow to find what we need?
+
+ */
+
+/*
+    fun findDisappearedNumbers(nums: IntArray): List<Int> {
+       val res: MutableList<Int> = mutableListOf()
+        for(i in 0..nums.size-1){
+
+            var idx=Math.abs(nums[i]);
+            idx--;
+            if(nums[idx]>0)
+              nums[idx]*=-1;
+
+
+        }
+
+
+        for(i in 0..nums.size-1){
+
+            if(nums[i]>0)
+                res.add(i+1);
+
+        }
+
+        return res;
+    }
+*/
+
+fun findDisappearedNumbers(nums: IntArray): List<Int> {
+    val srt: MutableSet<Int> = nums.toMutableSet()
+    for (i in nums.indices) if (!srt.contains(i + 1)) srt.add(i + 1) else srt.remove(i + 1)
+    return srt.toList()
+}
+
+/***
+ * Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in
+ * non-decreasing order.
+
+
+
+Example 1:
+
+Input: nums = [-4,-1,0,3,10]
+Output: [0,1,9,16,100]
+Explanation: After squaring, the array becomes [16,1,0,9,100].
+After sorting, it becomes [0,1,9,16,100].
+
+Example 2:
+
+Input: nums = [-7,-3,2,3,11]
+Output: [4,9,9,49,121]
+
+
+
+Constraints:
+
+1 <= nums.length <= 104
+-104 <= nums[i] <= 104
+nums is sorted in non-decreasing order.
+
+
+Follow up: Squaring each element and sorting the new array is very trivial, could you find an O(n) solution using a different approach?
+ */
+
+fun sortedSquares(nums: IntArray): IntArray {
+ return intArrayOf()
+}
+
 fun main(args: Array<String>) {
     val nums = intArrayOf(3, 3, 5, 5); // Input array false
     val nums1 = intArrayOf(1, 2, 3, 5, 7); // Input array false
@@ -653,9 +763,10 @@ fun main(args: Array<String>) {
 
      */
 
-    println(thirdMax(nums))
-    println(thirdMax(nums2))
-    println(thirdMax(nums4))
-    println(thirdMax(nums7))
-    println(thirdMax(nums17))
+    println(findDisappearedNumbers(intArrayOf(4, 3, 2, 7, 8, 2, 3, 1)))
+    println(findDisappearedNumbers(intArrayOf(1, 1)))
+    println(findDisappearedNumbers(nums11))
+    println(findDisappearedNumbers(nums3))
+
+
 }
