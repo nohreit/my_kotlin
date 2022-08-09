@@ -721,8 +721,62 @@ nums is sorted in non-decreasing order.
 Follow up: Squaring each element and sorting the new array is very trivial, could you find an O(n) solution using a different approach?
  */
 
+/***
+ * Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
+
+
+
+Example 1:
+
+Input: nums = [-4,-1,0,3,10]
+Output: [0,1,9,16,100]
+Explanation: After squaring, the array becomes [16,1,0,9,100].
+After sorting, it becomes [0,1,9,16,100].
+
+Example 2:
+
+Input: nums = [-7,-3,2,3,11]
+Output: [4,9,9,49,121]
+
+
+
+Constraints:
+
+1 <= nums.length <= 104
+-104 <= nums[i] <= 104
+nums is sorted in non-decreasing order.
+
+
+Follow up: Squaring each element and sorting the new array is very trivial, could you find an O(n) solution using a different approach?
+ */
+
+/*
+        val ans = IntArray(nums.size)
+        var l = 0
+        var r = nums.size - 1
+        var count = r
+        while(l <= r) {
+            val lSquare = nums[l] * nums[l]
+            val rSquare = nums[r] * nums[r]
+            if(lSquare > rSquare){
+                ans[count] = lSquare
+                l++
+            } else {
+                ans[count] = rSquare
+                r--
+            }
+            count--
+        }
+        return ans
+*/
+
 fun sortedSquares(nums: IntArray): IntArray {
- return intArrayOf()
+    for (i in nums.indices.reversed())
+        nums[i] = nums[i] * nums[i]
+
+    nums.sort()
+
+    return nums
 }
 
 fun main(args: Array<String>) {
@@ -744,6 +798,8 @@ fun main(args: Array<String>) {
     val nums15 = intArrayOf(1, 4, 9, 0, 13, 0, 0, 0, 15, 0, 19)
     val nums16 = intArrayOf(3, 1, 2, 4)
     val nums17 = intArrayOf(1, 4, 9, 11, 13, 5, 8, 6, 15, 3, 19)
+    val nums18 = intArrayOf(-4, -1, 0, 3, 10)
+    val nums19 = intArrayOf(-7, -3, 2, 3, 11)
 
     val target = 1; // Value to remove
     val expectedNums = intArrayOf(); // The expected answer with correct length.
@@ -763,10 +819,8 @@ fun main(args: Array<String>) {
 
      */
 
-    println(findDisappearedNumbers(intArrayOf(4, 3, 2, 7, 8, 2, 3, 1)))
-    println(findDisappearedNumbers(intArrayOf(1, 1)))
-    println(findDisappearedNumbers(nums11))
-    println(findDisappearedNumbers(nums3))
+    println(sortedSquares(nums18).toList())
+    println(sortedSquares(nums19).toList())
 
 
 }
