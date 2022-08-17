@@ -67,6 +67,122 @@ fun twoSum(nums: IntArray, target: Int): IntArray {
     return intArrayOf()
 }
 
+/***
+804. Unique Morse Code Words
+Easy
+
+International Morse Code defines a standard encoding where each letter is mapped to a series of dots and dashes, as follows:
+
+'a' maps to ".-",
+'b' maps to "-...",
+'c' maps to "-.-.", and so on.
+
+For convenience, the full table for the 26 letters of the English alphabet is given below:
+
+[".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
+
+Given an array of strings words where each word can be written as a concatenation of the Morse code of each letter.
+
+For example, "cab" can be written as "-.-..--...", which is the concatenation of "-.-.", ".-", and "-...". We will call such a concatenation the transformation of a word.
+
+Return the number of different transformations among all words we have.
+
+
+
+Example 1:
+
+Input: words = ["gin","zen","gig","msg"]
+Output: 2
+Explanation: The transformation of each word is:
+"gin" -> "--...-."
+"zen" -> "--...-."
+"gig" -> "--...--."
+"msg" -> "--...--."
+There are 2 different transformations: "--...-." and "--...--.".
+
+Example 2:
+
+Input: words = ["a"]
+Output: 1
+
+
+
+Constraints:
+
+1 <= words.length <= 100
+1 <= words[i].length <= 12
+words[i] consists of lowercase English letters.
+
+ */
+
+fun uniqueMorseRepresentation(words: Array<String>): Int {
+    /*val morse = hashMapOf(
+        'a' to ".-",
+        'b' to "-...",
+        'c' to "-.-.",
+        'd' to "-..",
+        'e' to ".",
+        'f' to "..-.",
+        'g' to "--.",
+        'h' to "....",
+        'i' to "..",
+        'j' to ".---",
+        'k' to "-.-",
+        'l' to ".-..",
+        'm' to "--",
+        'n' to "-.",
+        'o' to "---",
+        'p' to ".--.",
+        'q' to "--.-",
+        'r' to ".-.",
+        's' to "...",
+        't' to "-",
+        'u' to "..-",
+        'v' to "...-",
+        'w' to ".--",
+        'x' to "-..-",
+        'y' to "-.--",
+        'z' to "--.."
+    )*/
+    val morse = arrayOf(
+        ".-",
+        "-...",
+        "-.-.",
+        "-..",
+        ".",
+        "..-.",
+        "--.",
+        "....",
+        "..",
+        ".---",
+        "-.-",
+        ".-..",
+        "--",
+        "-.",
+        "---",
+        ".--.",
+        "--.-",
+        ".-.",
+        "...",
+        "-",
+        "..-",
+        "...-",
+        ".--",
+        "-..-",
+        "-.--",
+        "--.."
+    )
+
+    val seen = hashSetOf<String>()
+
+    for (word in words) {
+        var code = ""
+        for (c in word.toCharArray()) code += morse[c - 'a']
+        seen.add(code)
+    }
+
+    return seen.size
+}
 
 fun main(args: Array<String>) {
     val nums0 = intArrayOf(2, 7, 11, 15)
@@ -74,6 +190,7 @@ fun main(args: Array<String>) {
     val nums2 = intArrayOf(0, 1)
 
 //    println(twoSum(nums0, 9).toList())
-    println(twoSum(nums1, 6).toList())
-    println(twoSum(nums2, 6).toList())
+//    println(twoSum(nums1, 6).toList())
+//    println(twoSum(nums2, 6).toList())
+    println(uniqueMorseRepresentation(arrayOf("gin", "zen", "gig", "msg")))
 }

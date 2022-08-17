@@ -463,10 +463,7 @@ Yet another direction of thought is to consider the elements to be removed as no
 copying the visible elements in-place, that should also solve this problem for us.
 
  */
-/*
 
-
- */
 fun removeElement(nums: IntArray, `val`: Int): Int {
     if (nums.isEmpty()) return 0
     if (nums.size == 1) return 1
