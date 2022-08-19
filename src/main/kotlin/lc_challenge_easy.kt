@@ -42,27 +42,26 @@ Follow-up: Can you come up with an algorithm that is less than O(n2) time comple
  */
 
 fun twoSum(nums: IntArray, target: Int): IntArray {
-//    nums.sort()
-//
-//    var x = 0
-//    var y = nums.lastIndex
-//    while (x < y) {
-//        val temp = nums[x] + nums[y]
-//        if (temp == target) return intArrayOf(x, y)
-//
-//        if (temp < target) x++
-//        else y++
-//    }
-//
-//    return intArrayOf()
+    /*    nums.sort()
+
+        var x = 0
+        var y = nums.lastIndex
+        while (x < y) {
+            val temp = nums[x] + nums[y]
+            if (temp == target) return intArrayOf(x, y)
+
+            if (temp < target) x++
+            else y++
+        }
+
+        return intArrayOf()
+    */
 
     val record = hashMapOf<Int, Int>()
     for (x in 1 until nums.size) {
         record[x] = nums[x]
         val y = target - nums[x]
-        if (record.contains(y)) {
-            return intArrayOf(record.filterValues { it == y }.keys.toIntArray()[0])
-        }
+        if (record.contains(y)) return intArrayOf(record.filterValues { it == y }.keys.toIntArray()[0])
     }
     return intArrayOf()
 }
@@ -116,34 +115,6 @@ words[i] consists of lowercase English letters.
  */
 
 fun uniqueMorseRepresentation(words: Array<String>): Int {
-    /*val morse = hashMapOf(
-        'a' to ".-",
-        'b' to "-...",
-        'c' to "-.-.",
-        'd' to "-..",
-        'e' to ".",
-        'f' to "..-.",
-        'g' to "--.",
-        'h' to "....",
-        'i' to "..",
-        'j' to ".---",
-        'k' to "-.-",
-        'l' to ".-..",
-        'm' to "--",
-        'n' to "-.",
-        'o' to "---",
-        'p' to ".--.",
-        'q' to "--.-",
-        'r' to ".-.",
-        's' to "...",
-        't' to "-",
-        'u' to "..-",
-        'v' to "...-",
-        'w' to ".--",
-        'x' to "-..-",
-        'y' to "-.--",
-        'z' to "--.."
-    )*/
     val morse = arrayOf(
         ".-",
         "-...",
@@ -184,13 +155,68 @@ fun uniqueMorseRepresentation(words: Array<String>): Int {
     return seen.size
 }
 
+/***
+ * 9. Palindrome Number
+ * @source: https://leetcode.com/problems/palindrome-number/
+ */
+
+fun isPalindrome(x: Int): Boolean {
+    return x.toString() == x.toString().reversed()
+}
+
+/***
+ * 13. Roman to Integer
+ * @source: https://leetcode.com/problems/roman-to-integer/
+ */
+
+fun romanToInt(s: String): Int {
+    val nums = hashMapOf<Char, Int>(
+        'I' to 1,
+        'V' to 5,
+        'V' to 5,
+        'X' to 10,
+        'L' to 50,
+        'C' to 100,
+        'D' to 500,
+        'M' to 1000
+    )
+
+    var total = 0
+
+    for (i in s.indices.reversed()) {
+        val currEl = nums[s[i]]!!
+        val elToRight = nums[s[i]]!!
+
+        if (i < s.length - 1 && currEl < elToRight) total -= currEl
+        else total += currEl
+    }
+    return total
+}
+
+/***
+ * 12. Integer to Roman
+ * @source: https://leetcode.com/problems/integer-to-roman/
+ */
+fun intToRoman(s: String): Int {
+    val nums = hashMapOf<Char, Int>(
+        'I' to 1,
+        'V' to 5,
+        'X' to 10,
+        'L' to 50,
+        'C' to 100,
+        'D' to 500,
+        'M' to 1000
+    )
+
+    return 0
+}
+
 fun main(args: Array<String>) {
     val nums0 = intArrayOf(2, 7, 11, 15)
     val nums1 = intArrayOf(3, 2, 4)
     val nums2 = intArrayOf(0, 1)
+    val nums3 = intArrayOf(121, -121, 10)
+    val str0 = arrayOf("gin", "zen", "gig", "msg")
 
-//    println(twoSum(nums0, 9).toList())
-//    println(twoSum(nums1, 6).toList())
-//    println(twoSum(nums2, 6).toList())
-    println(uniqueMorseRepresentation(arrayOf("gin", "zen", "gig", "msg")))
+    nums3.forEach { println(isPalindrome(it)) }
 }
