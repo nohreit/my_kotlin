@@ -42,28 +42,11 @@ Follow-up: Can you come up with an algorithm that is less than O(n2) time comple
  */
 
 fun twoSum(nums: IntArray, target: Int): IntArray {
-    /*    nums.sort()
-
-        var x = 0
-        var y = nums.lastIndex
-        while (x < y) {
-            val temp = nums[x] + nums[y]
-            if (temp == target) return intArrayOf(x, y)
-
-            if (temp < target) x++
-            else y++
-        }
-
-        return intArrayOf()
-    */
-
-    val record = hashMapOf<Int, Int>()
-    for (x in 1 until nums.size) {
-        record[x] = nums[x]
-        val y = target - nums[x]
-        if (record.contains(y)) return intArrayOf(record.filterValues { it == y }.keys.toIntArray()[0])
+    var map = hashMapOf<Int, Int>()
+    for (i in nums.indices) {
+        var complement = target - nums[i]
+        if (map.containsKey(complement)) return intArrayOf(map[complement], i)
     }
-    return intArrayOf()
 }
 
 /***
@@ -211,6 +194,14 @@ fun intToRoman(s: String): Int {
     return 0
 }
 
+/***
+ * https://leetcode.com/problems/binary-tree-paths/
+ * https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/
+ * https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/
+ * https://leetcode.com/problems/partition-equal-subset-sum/
+ * https://leetcode.com/problems/coin-change/
+ * https://leetcode.com/problems/substring-with-largest-variance/
+ */
 fun main(args: Array<String>) {
     val nums0 = intArrayOf(2, 7, 11, 15)
     val nums1 = intArrayOf(3, 2, 4)
@@ -218,5 +209,7 @@ fun main(args: Array<String>) {
     val nums3 = intArrayOf(121, -121, 10)
     val str0 = arrayOf("gin", "zen", "gig", "msg")
 
-    nums3.forEach { println(isPalindrome(it)) }
+    println(twoSum(nums0, 9).toList())
+    println(twoSum(nums1, 6).toList())
+    println(twoSum(nums2, 6).toList())
 }
